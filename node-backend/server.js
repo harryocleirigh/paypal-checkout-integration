@@ -166,10 +166,10 @@ const captureOrder = async (orderID) => {
 const createRefundRequest = async (orderID) => {  
   const clientID = PAYPAL_CLIENT_ID; 
   const sellerPayerID = PAYPAL_SELLER_ID; 
-  console.log('clientID -> ', clientID);
-  console.log('sellerPayerID -> ', sellerPayerID);
+  // console.log('clientID -> ', clientID);
+  // console.log('sellerPayerID -> ', sellerPayerID);
   const jwt = await getAuthAssertionValue(clientID, sellerPayerID); 
-  console.log('jwt -> ', jwt);
+  // console.log('jwt -> ', jwt);
   const accessToken = await generateAccessToken();
   const url = `${process.env.URL}/v2/payments/captures/${orderID}/refund`;
   // 123e4567-e89b-12d3-a456-426655440020 in this format
