@@ -1,6 +1,6 @@
 # PayPal Checkout Integration Setup
 
-This repo demonstrations the integratation of the standard PayPal Checkout, allowing for order processing and refunds. It uses Node.js for the backend and React for the frontend.
+This repo demonstrations the integratation of the standard PayPal Checkout, allowing for order processing and refunds. It uses Express for the backend and React for the frontend.
 
 ## Prerequisites
 
