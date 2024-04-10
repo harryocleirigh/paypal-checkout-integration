@@ -58,7 +58,6 @@ export default function App() {
         const errorMessage = errorDetail
           ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
           : JSON.stringify(orderData);
-      
         throw new Error(errorMessage);
       }
     } catch (error) {
@@ -89,6 +88,7 @@ export default function App() {
         return actions.restart();
       } else if (errorDetail) {
         // (2) Other non-recoverable errors -> Show a failure message
+        setShowModal(true);
         setTransactionSuccess(false);
         setTransactionProcessed(true);
         throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
@@ -108,6 +108,9 @@ export default function App() {
         setTransactionSuccess(true);
       }
     } catch (error) {
+      setShowModal(true);
+      setTransactionSuccess(false);
+      setTransactionProcessed(true);      
       console.error(error);
     }
   }
@@ -224,7 +227,7 @@ export default function App() {
               gap: '1rem',
               maxWidth: '400px',
             }}>
-              <h2 style={{margin: '0', marginTop: '1rem'}}>Transaction Processed</h2>
+              {transcationProcessed && transactionSuccess ? <h2 style={{margin: '0', marginTop: '1rem'}}>Transaction Successful</h2>: <h2 style={{margin: '0', marginTop: '1rem'}}>Transaction Failure</h2>}
               {transcationProcessed && transactionSuccess ? <p>Your transaction ID is <span style={{color: '#0070f3'}}>{transactionID}</span></p>: <p>There was an error processing your transaction. Please check your email.</p>}
               {refundStatus === 'pending' ? <p style={{margin: '0'}}>Refund is processing for transaction ID <span style={{color: '#0070f3'}}>{transactionID}</span></p> : null}
               {refundStatus === 'complete' ? <p style={{margin: '0'}}>Refund request has been processed for transaction ID <span style={{color: '#0070f3'}}>{transactionID}.</span> Please check your email</p> : null}
